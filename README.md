@@ -1,3 +1,6 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Detekt scaning](https://github.com/Nuclominus/build-logic-module/actions/workflows/pr_code_analyzing.yml/badge.svg)](https://github.com/Nuclominus/build-logic-module/actions/workflows/pr_code_analyzing.yml)
+
 # Build-Logic Module for Android Projects
 This project provides a template for a build-logic module for Android projects. It is designed to streamline the process of setting up and managing dependencies in your Android project.
 
