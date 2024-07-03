@@ -53,6 +53,9 @@ internal fun Project.configureAndroidApplication() =
             // Room
             addLibrary(versionCatalog(), "androidx-room")
             addLibrary(versionCatalog(), "androidx-room-compiler", Configurations.Ksp)
+
+            addLibrary(versionCatalog(), "compose-ui-test-junit4", Configurations.TestImplementation)
+            addLibrary(versionCatalog(), "compose-ui-test-manifest", Configurations.DebugImplementation)
         }
     }
 
