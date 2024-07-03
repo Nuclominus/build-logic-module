@@ -32,22 +32,29 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            AppTemplateTheme {
-                val navController = rememberNavController()
-
-                BackHandler(true) {
-                    if (navController.backQueue.size <= 1) {
-                        finish()
-                    } else {
-                        navController.popBackStack()
-                    }
-                }
-
-                Navigation(
-                    navController = navController
-                )
+            AppMain {
+                finish()
             }
         }
+    }
+}
+
+@Composable
+fun AppMain(onBackPressed: () -> Unit) {
+    AppTemplateTheme {
+        val navController = rememberNavController()
+
+        BackHandler(true) {
+            if (navController.backQueue.size <= 1) {
+                onBackPressed()
+            } else {
+                navController.popBackStack()
+            }
+        }
+
+        Navigation(
+            navController = navController
+        )
     }
 }
 
@@ -71,8 +78,8 @@ fun Navigation(
                 navArgument(Constants.MODEL_ID) { type = NavType.StringType }
             )
         ) { backStackEntry ->
-             val modelId = backStackEntry.arguments?.getString(Constants.MODEL_ID) ?: ""
-             Log.d("DetailsScreen", "ModelId: $modelId")
+            val modelId = backStackEntry.arguments?.getString(Constants.MODEL_ID) ?: ""
+            Log.d("DetailsScreen", "ModelId: $modelId")
             // init details screen with modelId
         }
     }
