@@ -20,7 +20,7 @@ jobs:
           cache: 'gradle'
 
       - name: 'Run Detekt Sample Analyzer'
-        run: ./gradlew --no-daemon :app:detekt
+        run: ./gradlew detekt --no-daemon
 
   code_build:
     runs-on: ubuntu-latest

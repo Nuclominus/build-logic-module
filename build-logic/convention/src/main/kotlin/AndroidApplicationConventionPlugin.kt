@@ -3,6 +3,7 @@
 import com.android.build.api.dsl.ApplicationExtension
 import core.Flavors
 import core.configureAndroidApplication
+import core.configureCodeChecking
 import core.configureCompose
 import core.configureDevFlavor
 import core.configureFlavors
@@ -25,6 +26,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             }
 
             extensions.configure<ApplicationExtension> {
+                configureCodeChecking()
                 configureAndroidApplication()
                 configureKotlin()
                 configureCompose()

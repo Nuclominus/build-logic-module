@@ -4,6 +4,10 @@ import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.ApplicationProductFlavor
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.ProductFlavor
+import org.gradle.api.Project
+import java.io.File
+import java.io.FileInputStream
+import java.util.Properties
 
 @Suppress("EnumEntryName")
 enum class FlavorDimension {
@@ -23,7 +27,7 @@ enum class Flavors(
     production(FlavorDimension.environment)
 }
 
-fun configureFlavors(
+fun Project.configureFlavors(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
     flavorConfigurationBlock: ProductFlavor.(flavor: Flavors) -> Unit = {}
 ) {
@@ -37,14 +41,13 @@ fun configureFlavors(
                     // main block configuration
                     dimension = it.dimension.name
 
+                    applyConfiguration(commonExtension, name)
+
                     // custom configuration
                     flavorConfigurationBlock(this, it)
 
                     if (this@apply is ApplicationExtension && this is ApplicationProductFlavor) {
-                        if (it.applicationIdSuffix != null) {
-                            applicationIdSuffix = it.applicationIdSuffix
-                            versionNameSuffix = it.versionNameSuffix
-                        }
+                        configBuildName(it)
                     }
                 }
             }
@@ -58,4 +61,30 @@ fun ProductFlavor.configureDevFlavor() {
 
 fun ProductFlavor.configureProdFlavor() {
     // custom configuration for prod flavor
+}
+
+internal fun ApplicationProductFlavor.configBuildName(flavor: Flavors) {
+    if (applicationIdSuffix != null) {
+        applicationIdSuffix = flavor.applicationIdSuffix
+        versionNameSuffix = flavor.versionNameSuffix
+    }
+}
+
+fun Project.applyConfiguration(
+    commonExtension: CommonExtension<*, *, *, *, *, *>,
+    configName: String,
+) {
+    commonExtension.apply {
+
+        defaultConfig {
+            println("Configuring flavor: $configName")
+            projectDir.getProps("/config/$configName.properties").forEach { prop ->
+                buildConfigField("String", "${prop.key}", "${prop.value}")
+            }
+        }
+    }
+}
+
+private fun File.getProps(filePath: String) = Properties().apply {
+    load(FileInputStream(File(parent + filePath)))
 }

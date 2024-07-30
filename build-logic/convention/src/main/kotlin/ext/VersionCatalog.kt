@@ -59,4 +59,5 @@ enum class Configurations(val value: String) {
     TestImplementation("androidTestImplementation"),
     DebugImplementation("debugImplementation"),
     Ksp("ksp"),
+    DetektPlugins("detektPlugins"),
 }
