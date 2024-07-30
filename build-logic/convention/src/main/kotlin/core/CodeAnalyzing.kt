@@ -9,6 +9,13 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 
+/**
+ * Configures code checking for the project using Detekt.
+ *
+ * This function applies the Detekt plugin, sets up the source directories,
+ * ensures the Detekt configuration file exists, and configures various Detekt options.
+ * It also adds the Detekt formatter plugin to the project dependencies.
+ */
 internal fun Project.configureCodeChecking() = with(pluginManager) {
     apply("io.gitlab.arturbosch.detekt")
 

@@ -27,6 +27,15 @@ enum class Flavors(
     production(FlavorDimension.environment)
 }
 
+/**
+ * Configure the flavors for the project.
+ *
+ * This function creates product flavors for each flavor in the `Flavors` enum and applies
+ * configuration specific to each flavor.
+ *
+ * @param commonExtension The common extension to which the flavors will be applied.
+ * @param flavorConfigurationBlock The block of configuration specific to each flavor.
+ */
 fun Project.configureFlavors(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
     flavorConfigurationBlock: ProductFlavor.(flavor: Flavors) -> Unit = {}
@@ -63,6 +72,11 @@ fun ProductFlavor.configureProdFlavor() {
     // custom configuration for prod flavor
 }
 
+/**
+ * Configure the build name for a specific flavor.
+ *
+ * @param flavor The flavor for which the build name will be configured.
+ */
 internal fun ApplicationProductFlavor.configBuildName(flavor: Flavors) {
     if (applicationIdSuffix != null) {
         applicationIdSuffix = flavor.applicationIdSuffix
@@ -70,6 +84,15 @@ internal fun ApplicationProductFlavor.configBuildName(flavor: Flavors) {
     }
 }
 
+/**
+ * Apply configuration for a specific flavor.
+ *
+ * This function reads properties from a configuration file specific to the given flavor
+ * and applies them to the `defaultConfig` block of the `commonExtension`.
+ *
+ * @param commonExtension The common extension to which the configuration will be applied.
+ * @param configName The name of the flavor configuration to be applied.
+ */
 fun Project.applyConfiguration(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
     configName: String,
