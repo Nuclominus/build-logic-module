@@ -1,7 +1,5 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     id("io.nuclominus.android.application")
-    alias(libs.plugins.detekt.analyzer)
 }
 
 android {
@@ -23,7 +21,7 @@ android {
                 "proguard-rules.pro",
                 "dexguard-release.txt",
             )
-            setProperty("archivesBaseName", "ImForge")
+            setProperty("archivesBaseName", "Template")
         }
 
         val debug by getting {
@@ -34,24 +32,15 @@ android {
                 "proguard-rules.pro",
                 "dexguard-release.txt",
             )
-            setProperty("archivesBaseName", "ImForge")
+            setProperty("archivesBaseName", "Template")
 
             lint {
                 abortOnError = false
             }
         }
     }
-
-    detekt {
-        source.setFrom("src/main/java")
-        config.setFrom("../config/detekt/detekt.yaml")
-        buildUponDefaultConfig = true
-        tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
-            exclude("**/theme/**/*.kt")
-        }
-    }
 }
 
 dependencies {
-
+    // Add your dependencies here
 }
