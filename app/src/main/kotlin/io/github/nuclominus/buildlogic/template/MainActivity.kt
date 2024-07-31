@@ -68,7 +68,7 @@ fun Navigation(
         startDestination = Screen.DASHBOARD.routeName,
     ) {
         composable(Screen.DASHBOARD.routeName) {
-            //init dashboard screen
+            // init dashboard screen
         }
 
         // Sample details screen with modelId argument

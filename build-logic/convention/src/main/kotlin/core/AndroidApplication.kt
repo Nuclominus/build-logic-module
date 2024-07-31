@@ -25,7 +25,7 @@ internal fun Project.configureAndroidApplication() =
             multiDexEnabled = true
         }
 
-        configureDefaults()
+        configureAndroidDefaults()
 
         lint {
             baseline = file("lint-baseline.xml")
@@ -60,7 +60,7 @@ internal fun Project.configureAndroidApplication() =
     }
 
 
-internal fun Project.configureDefaults() =
+internal fun Project.configureAndroidDefaults() =
     extensions.getByType(CommonExtension::class.java).apply {
         compileSdk = AndroidAppConf.COMPILE_SDK
 

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.google.ksp) apply false
     alias(libs.plugins.hilt.plugin) apply false
     alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.detekt.analyzer) apply false
 }
 
 buildscript {

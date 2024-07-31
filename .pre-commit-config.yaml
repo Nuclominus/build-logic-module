@@ -1,0 +1,15 @@
+default_stages: [commit, merge-commit, push, manual]
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: local
+    hooks:
+      - id: detekt
+        name: detekt check
+        description: Runs `detekt` on modified .kt files.
+        language: script
+        entry: detekt.sh
