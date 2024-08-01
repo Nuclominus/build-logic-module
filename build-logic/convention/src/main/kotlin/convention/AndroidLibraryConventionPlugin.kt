@@ -1,6 +1,7 @@
+package convention
+
 import com.android.build.gradle.LibraryExtension
 import core.configureAndroidLibrary
-import core.configureCodeChecking
 import core.configureKotlin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -12,10 +13,10 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("com.android.library")
                 apply("org.jetbrains.kotlin.android")
+                apply("io.nuclominus.code.check")
             }
 
             extensions.configure<LibraryExtension> {
-                configureCodeChecking()
                 configureAndroidLibrary()
                 configureKotlin()
             }

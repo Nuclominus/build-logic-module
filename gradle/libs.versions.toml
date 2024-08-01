@@ -1,12 +1,12 @@
 [versions]
-activity-compose = "1.9.0"
-agp = "8.5.0"
+activity-compose = "1.9.1"
+agp = "8.5.1"
 compose-bom = "2024.06.00"
 core-ktx = "1.13.1"
 detektAnalyzer = "1.23.5"
 kotlin = "2.0.0"
 ksp = "2.0.0-1.0.21"
-lifecycle = "2.8.3"
+lifecycle = "2.8.4"
 composeState = "1.6.8"
 hilt = "2.51.1"
 androidxHilt = "1.2.0"
@@ -14,11 +14,10 @@ multidex = "2.0.1"
 workmanager = "2.9.0"
 room = "2.6.1"
 gson = "2.10.1"
-material3 = "1.3.0-beta04"
+material3 = "1.3.0-beta05"
 
 [libraries]
 compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
-android-gradle-plugin = { module = "com.android.tools.build:gradle", name = "gradle-plugin", version.ref = "agp" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 compose-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
 androidx-multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
@@ -28,15 +27,12 @@ androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = 
 androidx-work = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workmanager" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 compose-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "composeState" }
-detekt-gradle-plugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detektAnalyzer" }
 google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "androidxHilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
-hilt-gradle-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHilt" }
 hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "androidxHilt" }
-kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
 material3-compose = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 compose-ui = { group = "androidx.compose.ui", name = "ui" }
@@ -46,6 +42,16 @@ compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-mani
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 detekt-formatter = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detektAnalyzer" }
+
+
+# Dependencies of the included build-logic
+kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradle-plugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+android-gradle-plugin = { module = "com.android.tools.build:gradle", name = "gradle-plugin", version.ref = "agp" }
+compose-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+detekt-gradle-plugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detektAnalyzer" }
+hilt-gradle-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
+room-gradle-plugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
 
 [bundles]
 androidx = [
@@ -71,6 +77,15 @@ compose = [
     "compose-activity",
     "compose-livedata",
 ]
+gradle-plugins = [
+    "kotlin-gradle-plugin",
+    "ksp-gradle-plugin",
+    "android-gradle-plugin",
+    "compose-gradle-plugin",
+    "detekt-gradle-plugin",
+    "hilt-gradle-plugin",
+    "room-gradle-plugin",
+]
 
 [plugins]
 detekt-analyzer = { id = "io.gitlab.arturbosch.detekt", version.ref = "detektAnalyzer" }
@@ -78,3 +93,12 @@ hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+room = { id = "androidx.room", version.ref = "room" }
+
+# Plugins defined by this project
+io-nuclominus-android-application = { id = "io.nuclominus.android.application", version = "unspecified" }
+io-nuclominus-android-library = { id = "io.nuclominus.android.library", version = "unspecified" }
+io-nuclominus-code-check = { id = "io.nuclominus.code.check", version = "unspecified" }
+io-nuclominus-di = { id = "io.nuclominus.di", version = "unspecified" }
+io-nuclominus-db = { id = "io.nuclominus.db", version = "unspecified" }
+io-nuclominus-android-compose = { id = "io.nuclominus.android.compose", version = "unspecified" }

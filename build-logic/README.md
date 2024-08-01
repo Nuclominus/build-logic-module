@@ -29,6 +29,6 @@ setup.
 
 Current list of convention plugins:
 
-- [`io.nuclominus.android.application`](build-logic/convention/src/main/kotlin/AndroidApplicationConventionPlugin.kt),
-  [`io.nuclominus.android.library`](build-logic/convention/src/main/kotlin/AndroidLibraryConventionPlugin.kt):
+- [`io.nuclominus.android.application`](./convention/src/main/kotlin/convention/AndroidApplicationConventionPlugin.kt),
+  [`io.nuclominus.android.library`](./convention/src/main/kotlin/convention/AndroidLibraryConventionPlugin.kt):
   Configures common Android and Kotlin options.

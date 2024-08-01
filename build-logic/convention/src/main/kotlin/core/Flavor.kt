@@ -5,6 +5,7 @@ import com.android.build.api.dsl.ApplicationProductFlavor
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.ProductFlavor
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
 import java.io.File
 import java.io.FileInputStream
 import java.util.Properties
@@ -33,43 +34,29 @@ enum class Flavors(
  * This function creates product flavors for each flavor in the `Flavors` enum and applies
  * configuration specific to each flavor.
  *
- * @param commonExtension The common extension to which the flavors will be applied.
  * @param flavorConfigurationBlock The block of configuration specific to each flavor.
  */
 fun Project.configureFlavors(
-    commonExtension: CommonExtension<*, *, *, *, *, *>,
     flavorConfigurationBlock: ProductFlavor.(flavor: Flavors) -> Unit = {}
-) {
-    commonExtension.apply {
+) = extensions.configure<ApplicationExtension> {
 
-        flavorDimensions += FlavorDimension.environment.name
+    flavorDimensions += FlavorDimension.environment.name
 
-        productFlavors {
-            Flavors.values().forEach {
-                create(it.name) {
-                    // main block configuration
-                    dimension = it.dimension.name
+    productFlavors {
+        Flavors.values().forEach {
+            create(it.name) {
+                // main block configuration
+                dimension = it.dimension.name
 
-                    applyConfiguration(commonExtension, name)
+                applyConfiguration(this@configure, name)
 
-                    // custom configuration
-                    flavorConfigurationBlock(this, it)
+                // custom configuration
+                flavorConfigurationBlock(this, it)
 
-                    if (this@apply is ApplicationExtension && this is ApplicationProductFlavor) {
-                        configBuildName(it)
-                    }
-                }
+                configBuildName(it)
             }
         }
     }
-}
-
-fun ProductFlavor.configureDevFlavor() {
-    // custom configuration for dev flavor
-}
-
-fun ProductFlavor.configureProdFlavor() {
-    // custom configuration for prod flavor
 }
 
 /**

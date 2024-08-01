@@ -7,6 +7,6 @@ object AndroidAppConf {
     const val VERSION_CODE: Int = 1
     const val NAMESPACE: String = "io.github.nuclominus.buildlogic.template"
     const val COMPILE_SDK: Int = 34
-    const val MIN_SDK: Int = 26
+    const val MIN_SDK: Int = 28
     val javaVersion: JavaVersion = JavaVersion.VERSION_19
 }

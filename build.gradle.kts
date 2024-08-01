@@ -5,12 +5,12 @@ plugins {
     alias(libs.plugins.hilt.plugin) apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.detekt.analyzer) apply false
+    alias(libs.plugins.room) apply false
 }
 
 buildscript {
     dependencies {
         classpath(libs.android.gradle.plugin)
-        classpath(libs.hilt.gradle.plugin)
     }
 }
 
