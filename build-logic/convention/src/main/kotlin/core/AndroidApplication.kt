@@ -3,12 +3,7 @@ package core
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.CommonExtension
 import data.AndroidAppConf
-import ext.Configurations
-import ext.addBundle
-import ext.addLibrary
-import ext.versionCatalog
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 
 internal fun Project.configureAndroidApplication() =
@@ -38,24 +33,6 @@ internal fun Project.configureAndroidApplication() =
             resources {
                 excludes += "/META-INF/{AL2.0,LGPL2.1}"
             }
-        }
-
-        dependencies {
-            // AndroidX
-            addBundle(versionCatalog(), "androidx")
-            addLibrary(versionCatalog(), "google-gson")
-
-            // Hilt
-            addBundle(versionCatalog(), "hilt")
-            addLibrary(versionCatalog(), "hilt-compiler", Configurations.Ksp)
-            addLibrary(versionCatalog(), "hilt-android-compiler", Configurations.Ksp)
-
-            // Room
-            addLibrary(versionCatalog(), "androidx-room")
-            addLibrary(versionCatalog(), "androidx-room-compiler", Configurations.Ksp)
-
-            addLibrary(versionCatalog(), "compose-ui-test-junit4", Configurations.TestImplementation)
-            addLibrary(versionCatalog(), "compose-ui-test-manifest", Configurations.DebugImplementation)
         }
     }
 

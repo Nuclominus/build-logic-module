@@ -4,6 +4,7 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.getByType
 
@@ -16,12 +17,12 @@ internal fun Project.versionCatalog(): VersionCatalog =
 /**
  * Add a library to the dependencies
  */
-internal fun DependencyHandlerScope.addLibrary(
+internal fun DependencyHandler.addLibrary(
     versionCatalog: VersionCatalog,
     alias: String,
     configuration: Configurations = Configurations.Implementation,
 ): Dependency? {
-    return dependencies.add(
+    return add(
         configuration.value,
         versionCatalog.findLibrary(alias).get()
     )
@@ -30,12 +31,12 @@ internal fun DependencyHandlerScope.addLibrary(
 /**
  * Add a platform to the dependencies
  */
-internal fun DependencyHandlerScope.addPlatform(
+internal fun DependencyHandler.addPlatform(
     versionCatalog: VersionCatalog,
     alias: String,
     configuration: Configurations = Configurations.Implementation,
 ): Dependency? {
-    return dependencies.add(
+    return add(
         configuration.value,
         platform(versionCatalog.findLibrary(alias).get())
     )
@@ -44,11 +45,11 @@ internal fun DependencyHandlerScope.addPlatform(
 /**
  * Add a bundle to the dependencies
  */
-internal fun DependencyHandlerScope.addBundle(
+internal fun DependencyHandler.addBundle(
     versionCatalog: VersionCatalog,
     alias: String
 ): Dependency? {
-    return dependencies.add(
+    return add(
         "implementation",
         versionCatalog.findBundle(alias).get()
     )

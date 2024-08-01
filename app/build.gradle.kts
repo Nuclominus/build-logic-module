@@ -1,5 +1,9 @@
 plugins {
-    id("io.nuclominus.android.application")
+    alias(libs.plugins.io.nuclominus.android.application)
+    alias(libs.plugins.io.nuclominus.code.check)
+    alias(libs.plugins.io.nuclominus.di)
+    alias(libs.plugins.io.nuclominus.db)
+    alias(libs.plugins.io.nuclominus.android.compose)
 }
 
 android {
